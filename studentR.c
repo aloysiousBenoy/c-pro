@@ -25,7 +25,7 @@ void main()
         if (fwrite != 0)
             printf("succesful");
         else
-            printf("not written");
+            printf("Write failed!!");
 
         fclose(fileptr);
     }
