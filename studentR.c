@@ -2,6 +2,7 @@
 struct student
 {
     char Name[20];
+    char newVarDino;
     int Admn_no;
     int class;
     char div[2];
