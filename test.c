@@ -1,22 +1,21 @@
 #include <stdio.h>
-void main()
+int main()
 {
-    FILE *fileptr;
-    char ch[12];
-    int line = 0;
-    fileptr = fopen("./hello.txt", "r");
-
-    if (fileptr == NULL)
-        printf("closed\n");
-    else
+    int t;
+    scanf("%d", &t);
+    for (int a0 = 0; a0 < t; a0++)
     {
-        printf("open\n ");
-        int wr = fread(&ch, sizeof(char), 13, fileptr);
-        if (wr)
+        int n;
+        int sum = 0;
+        scanf("%d", &n);
+        for (int i = 3; i <= n; i++)
         {
-            printf("read %d bytes", wr);
-            printf("\n %s", ch);
+            if (i % 3 == 0 || i % 5 == 0)
+            {
+                sum += i;
+            }
         }
-        printf("End of file\n");
+        printf("%d\n", sum);
     }
+    return 0;
 }

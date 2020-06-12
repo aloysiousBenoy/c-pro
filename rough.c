@@ -1,44 +1,69 @@
 #include <stdio.h>
-
-
-/*
-
-
-2 5 7 8 9 12 13 
-3 5 6 9 15 
-
-2 3 5 5 6 7 8 9 9 12 13 15
-
-
-*/
-
-int main()
+#include <stdlib.h>
+void main()
 {
-    int a[50], n,k;
-    printf("Enter the no. of elements\n");
+
+    int n;
+    printf("Enter n\n");
     scanf("%d", &n);
-    printf("Enter k\n");
-    scanf("%d",&k);
-    printf("Enter the elements\n");
-    for (int i = 0; i < n; i++)
-        scanf("%d", &a[i]);
-    int min = 0;
-    for (int i = 0; i < n; i++)
+    int i, j, k;
+    int **a;
+    int size_of_array = 2 * n - 1;
+    a = (int **)malloc(sizeof(int *) * size_of_array);
+    for (i = 0; i < size_of_array; i++)
     {
-        min=i;
-        for (int j = i+1; j < n; j++)
-        {
-            if (a[j] < a[min])
-                min=j;
-        }
-        int t = a[i];
-        a[i] = a[min];
-        a[min] = t;
+        a[i] = (int *)malloc(sizeof(int) * size_of_array);
     }
-    for(int i =0; i<n;i++)
-    printf(" %d ",a[i]);
 
-    printf("%d th largest no. is:%d\n",k,a[n-k]);
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < 2 * n - 1; j++)
+        {
 
-    return 0;
+            if (j >= i && j < 2 * n - 1 - i)
+            {
+                a[i][j] = n - i;
+            }
+            else if (j < i)
+            {
+                a[i][j] = n - j;
+            }
+            else
+            {
+                a[i][j] = n - ((2 * n - 1) - (j + 1));
+            }
+        }
+    }
+
+    for (i = n; i < 2 * n - 1; i++)
+    {
+        for (j = 0; j < 2 * n - 1; j++)
+        {
+
+            if (j >= 2 * n - 1 - i && j < i)
+            {
+                a[i][j] = 2 + i - n;
+            }
+            else if (j >= i)
+            {
+                a[i][j] = n - ((2 * n - 1) - (j + 1));
+            }
+            else
+            {
+                a[i][j] = n - j;
+            }
+        }
+    }
+
+    for (i = 0; i < 2 * n - 1; i++)
+    {
+        for (j = 0; j < 2 * n - 1; j++)
+        {
+            if (a[i][j] == 0)
+                printf(" ");
+            else
+                printf("%d ", a[i][j]);
+        }
+        printf("\n");
+    }
 }
